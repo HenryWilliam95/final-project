@@ -8,3 +8,11 @@ After implementing a basic BT, I will begin implementing a Blackboard System, th
 Once I have a working BT and blackboard I will begin expanding the agent’s available behaviours, thereby improving the illusion of intelligence. I will do this by introducing decorator, sequence and selector nodes as described by Champandard and Dunstan (2014, pp78-81).  This will allow the agent to make choices based on what is currently happening around them, executing behaviours when certain conditions are met.
 
 Sequence and selector nodes are derived from a base class called a composite node, these can be used to make “more interesting, intelligent behaviours by combining simpler behaviours together.” (Champandard and Dunstan, 2014, p78).  This will allow the agent to make decisions by traversing the tree using predefined conditions, this can be used to break the seek state down further by using a selector node, with the children behaviours being hunting player, searching last know position, and investigate.  While they all perform the basic seek state, they will behave differently depending on the conditioning, for example searching last known position will cause the agent to move towards where the player was last sighted acting cautiously, ready to run to the nearest cover, whereas the investigate state will run if a trigger has been caused such as a noise near the agent, but the agent did not see the player, then the agent will move towards the location in a confused state. 
+
+Champandard, A. J and Dunstan, P. (2014) “The Behaviour Tree Starter Kit” in Game AI Pro, edited by Steve Rabin. Boca Raton, FL: CRC Press 2014, pp. 73-91.
+
+Dawe, M. (2014) “Real-World Behaviour Trees in Script” in Game AI Pro, edited by Steve Rabin. Boca Raton, FL: CRC Press 2014, pp. 93-98
+
+Dill, K. (2014) “Structural Architecture – Common Tricks of the Trade” in Game AI Pro, edited by Steve Rabin. Boca Raton, FL: CRC Press 2014, pp 61-71.
+
+Unity – Scripting API: NavMesh. (2018) Available at https://docs.unity3d.com/ScriptReference/AI.NavMesh.html [Accessed 24th Sep. 2018]
