@@ -1,6 +1,6 @@
-This is a brief understanding of my project, and outline of the work I intend to create, my full proposal found in the ##documents tab
+This is a brief understanding of my project, and outline of the work I intend to create, my full proposal found in the documents tab
 
-#Using A Behaviour Tree to Control the Behaviours of Artificial Intelligence in a Stealth Environment
+Using A Behaviour Tree to Control the Behaviours of Artificial Intelligence in a Stealth Environment
 
 The aim of my Final Project Artefact is to test and improve my knowledge of Artificial Intelligence (AI) specifically how Behaviour Trees (BT) can be used to control an agent’s decision choices in a stealth environment.  I will be using the Unity3D Game Engine to build the project, this will allow me to quickly build and iterate the test environment, I will also be using Unity to gain access to the built-in NavMesh tool which “can be used to do spatial queries, like pathfinding and walkability tests (“Unity - Scripting API: NavMesh,” 2018).
 To begin the project, I will create a small test scene within Unity to learn how to use the built-in NavMesh system.  To test my knowledge of the NavMesh I will start with a simple scene and begin increasing the complexity to test Line of Sight (LoS) to objects around the scene, and watch the agent move to set locations.  If there is time as a stretch goal, I would like to try and implement my own pathfinding algorithms.
