@@ -22,6 +22,13 @@ public class SetSearchZone : Node
     {
         if (!hasReachedDestination()) { return Status.FAILURE; }
 
+        if(navAgent.velocity.magnitude <= 0.4f)
+        {
+            Debug.Log("Magnitude is small agent not moving " + navAgent.velocity.magnitude);
+            navAgent.SetDestination(RandomPosition(globalBlackboard.playerLastSighting, searchRadius));
+            return Status.SUCCESS;
+        }
+
         navAgent.SetDestination(RandomPosition(globalBlackboard.playerLastSighting, searchRadius));
         return Status.SUCCESS;
     }
