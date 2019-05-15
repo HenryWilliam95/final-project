@@ -13,8 +13,6 @@ public class CanConverse : Node
 
     public override Status Tick()
     {
-        Guardblackboard friendlyBlackboard = guardBlackboard.nearbyFriendly.GetComponent<Guardblackboard>();
-
         if (guardBlackboard.triedToConverse) { return Status.FAILURE; }
 
         return Status.SUCCESS;

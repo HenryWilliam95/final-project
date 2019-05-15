@@ -453,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913172199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 12.82}
+  m_LocalPosition: {x: 14.38, y: 0, z: 3.98}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1624113759}
@@ -537,6 +537,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8136343703394757045, guid: 277e08e405f82524eadc2831c036dbbe,
+        type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -597,10 +602,10 @@ PrefabInstance:
       propertyPath: speedTest
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8136343703394757045, guid: 277e08e405f82524eadc2831c036dbbe,
+    - target: {fileID: 4813009960919136503, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
-      propertyPath: state
-      value: 0
+      propertyPath: m_StoppingDistance
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
@@ -654,7 +659,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1624113758
 GameObject:
@@ -769,8 +774,8 @@ GameObject:
   - component: {fileID: 2099724881}
   - component: {fileID: 2099724880}
   m_Layer: 0
-  m_Name: Global Blackboard
-  m_TagString: Untagged
+  m_Name: Game Controller
+  m_TagString: Game Controller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -787,9 +792,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e629cbd8ec8944d9284d652f9fde44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLastSighting: {x: 10000, y: 10000, z: 10000}
+  resetPlayerSighting: {x: 10000, y: 10000, z: 10000}
   guardBlackboards:
-  - {fileID: 1831478548}
   - {fileID: 698502825}
+  - {fileID: 1831478548}
 --- !u!4 &2099724881
 Transform:
   m_ObjectHideFlags: 0
@@ -816,10 +823,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard
       objectReference: {fileID: 0}
+    - target: {fileID: 8136343703394757045, guid: 277e08e405f82524eadc2831c036dbbe,
+        type: 3}
+      propertyPath: state
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.88
+      value: -23.61
       objectReference: {fileID: 0}
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
@@ -829,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.96
+      value: -7.58
       objectReference: {fileID: 0}
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
@@ -876,10 +888,10 @@ PrefabInstance:
       propertyPath: speedTest
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 8136343703394757045, guid: 277e08e405f82524eadc2831c036dbbe,
+    - target: {fileID: 4813009960919136503, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
-      propertyPath: state
-      value: 0
+      propertyPath: m_StoppingDistance
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
@@ -903,7 +915,7 @@ PrefabInstance:
     - target: {fileID: 6500802110433640721, guid: 5fc924d19a32260488f434364286f0b3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.1
+      value: -13.9
       objectReference: {fileID: 0}
     - target: {fileID: 6500802110433640721, guid: 5fc924d19a32260488f434364286f0b3,
         type: 3}
@@ -913,7 +925,7 @@ PrefabInstance:
     - target: {fileID: 6500802110433640721, guid: 5fc924d19a32260488f434364286f0b3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.633
+      value: -11.1
       objectReference: {fileID: 0}
     - target: {fileID: 6500802110433640721, guid: 5fc924d19a32260488f434364286f0b3,
         type: 3}

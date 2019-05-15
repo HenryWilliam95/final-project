@@ -13,7 +13,8 @@ public class GUARD_BT : MonoBehaviour
 
     // patrol speeds
     const float IDLE_SPEED = 3.5f;
-    const float ALERTED_SPEED = 6F;
+    const float ALERTED_SPEED = 6f;
+    const float COMBAT_SPEED = 5f;
 
 
     private void Awake()
@@ -34,6 +35,7 @@ public class GUARD_BT : MonoBehaviour
 
     Node InitializeBehaviourTree()
     {
+        #region IDLE BEHAVIOURS
         SelectorNode movement = new SelectorNode("Movement Selector",
             new PickLocation(ref guardBlackboard, ref navAgent, gameObject),
             new Move(ref guardBlackboard, ref navAgent));
@@ -44,7 +46,7 @@ public class GUARD_BT : MonoBehaviour
             movement);
 
         SequenceNode alertedPatrol = new SequenceNode("Alerted Patrol",
-            new CheckState(ref guardBlackboard, Guardblackboard.GuardState.alerted, ref navAgent),
+            new CheckState(ref guardBlackboard, Guardblackboard.GuardState.investigate, ref navAgent),
             new SetSpeed(ALERTED_SPEED, ref navAgent),
             movement);
 
@@ -56,23 +58,42 @@ public class GUARD_BT : MonoBehaviour
             conversationStateCheck,
             new CanConverse(ref guardBlackboard),
             new IsFriendlyNear(ref guardBlackboard, ref globalBlackboard),
-            new CanFriendlyConverse(ref guardBlackboard),
-            new LookAt(ref guardBlackboard),
-            new WaitForTime(ref guardBlackboard, 4f));
+            //new CanFriendlyConverse(ref guardBlackboard),
+            //new LookAt(ref guardBlackboard),
+            new WaitForTime(ref guardBlackboard, 4f, ref navAgent));
 
         SelectorNode patrol = new SelectorNode("Patrol Selector",
-            converse,
             alertedPatrol,
             idlePatrol);
 
         SelectorNode idle = new SelectorNode("Idle Selector",
-            //shouldConverse,
+            converse,
             patrol);
+        #endregion
+
+        #region COMBAT BEHAVIOURS
+        SequenceNode combatMovement = new SequenceNode("Combat Movement",
+            new CombatPickLocation(ref guardBlackboard, ref navAgent, ref globalBlackboard),
+            new Move(ref guardBlackboard, ref navAgent));
+
+        SequenceNode playerSighted = new SequenceNode("Player Sighted",
+            new CheckState(ref guardBlackboard, Guardblackboard.GuardState.alerted, ref navAgent),
+            new SetSpeed(ALERTED_SPEED, ref navAgent),
+            new SetSearchZone(ref guardBlackboard, ref globalBlackboard, ref navAgent, 10));
+
+        SequenceNode playerInSight = new SequenceNode("Player In Sight",
+            new CheckState(ref guardBlackboard, Guardblackboard.GuardState.combat, ref navAgent),
+            new SetSpeed(COMBAT_SPEED, ref navAgent),
+            combatMovement);
+
+        SelectorNode combat = new SelectorNode("Combat Selector",
+            playerInSight,
+            playerSighted);
+        #endregion
 
         SelectorNode root = new SelectorNode("root",
-            idle
-            //,combat
-            );
+            idle,
+            combat);
 
         return root;
     }

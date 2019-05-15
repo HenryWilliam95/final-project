@@ -31,12 +31,11 @@ public class IsFriendlyNear : Node
                     {
                         guardBlackboard.SetTriedToConverse(true);
                         return Status.FAILURE;
-                    }
-
-                    // Assign the nearby guard
-                    guardBlackboard.nearbyFriendly = globalBlackboard.guardBlackboards[i].gameObject;
-                    return Status.SUCCESS;
+                    }                   
                 }
+                // Assign the nearby guard
+                guardBlackboard.nearbyFriendly = globalBlackboard.guardBlackboards[i].gameObject;
+                return Status.SUCCESS;
             }
         }
         return Status.FAILURE;

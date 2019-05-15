@@ -1,44 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaitForTime : Node
 {
     Guardblackboard guardblackboard;
+    NavMeshAgent navAgent;
     float time;
     
-    public WaitForTime(ref Guardblackboard _guardblackboard, float _time)
+    public WaitForTime(ref Guardblackboard _guardblackboard, float _time, ref NavMeshAgent _navAgent)
     {
         guardblackboard = _guardblackboard;
-        guardblackboard.converseTimer = _time;
+        time = _time;
+        guardblackboard.conversationTimer = time;
+        navAgent = _navAgent;
     }
 
     public override Status Tick()
     {
-        if(guardblackboard.nearbyFriendly == null) { return Status.FAILURE; }
-        Guardblackboard friendlyGuardblackboard = guardblackboard.nearbyFriendly.GetComponent<Guardblackboard>();
-
         if (guardblackboard.finishedConversation == false)
         {
-            Debug.Log("Started conversation");
+            navAgent.isStopped = true;
             guardblackboard.SetState(Guardblackboard.GuardState.converse);
-            friendlyGuardblackboard.SetState(Guardblackboard.GuardState.converse);
+        }
+
+        if (guardblackboard.GetGuardState() == Guardblackboard.GuardState.converse)
+        {
+            guardblackboard.gameObject.transform.LookAt(guardblackboard.nearbyFriendly.transform);
         }
 
         if(guardblackboard.finishedConversation)
         {
             Debug.Log("Finished conversation");
-            friendlyGuardblackboard.finishedConversation = true;
-            friendlyGuardblackboard.SetState(Guardblackboard.GuardState.idle);
-            friendlyGuardblackboard.nearbyFriendly = null;
+            navAgent.isStopped = false;
+            navAgent.SetDestination(guardblackboard.destination);
 
-            guardblackboard.finishedConversation = true;
+            guardblackboard.nearbyFriendly = null;
             guardblackboard.SetState(Guardblackboard.GuardState.idle);
             guardblackboard.nearbyFriendly = null;
+            guardblackboard.SetTriedToConverse(true);
+            guardblackboard.finishedConversation = false;
+
+            if(guardblackboard.conversationTimer <= 0)
+            {
+                guardblackboard.conversationTimer = time;
+            }
 
             return Status.SUCCESS;
         }
 
-        return Status.FAILURE;
+        return Status.RUNNING;
     }
 }

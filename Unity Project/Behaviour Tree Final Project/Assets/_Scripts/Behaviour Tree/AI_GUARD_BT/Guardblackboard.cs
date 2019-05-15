@@ -5,7 +5,7 @@ using UnityEngine;
 public class Guardblackboard : MonoBehaviour
 {
     // AI States
-    public enum GuardState { idle, alerted, combat, converse }
+    public enum GuardState { idle, alerted, combat, converse, investigate }
     public GuardState state;
     public void SetState(GuardState _guardState) { state = _guardState; }
     public GuardState GetGuardState() { return state; }
@@ -16,7 +16,8 @@ public class Guardblackboard : MonoBehaviour
 
     // Conversations 
     const float CONVERSATION_RETRY_TIMER = 10f;
-    public float converseTimer = 0f;
+    public float converseRetryTimer = 0f;
+    public float conversationTimer = 0f;
     public bool triedToConverse { get; set; }
     public bool finishedConversation { get; set; }
     public GameObject nearbyFriendly;
@@ -24,8 +25,18 @@ public class Guardblackboard : MonoBehaviour
     public Vector3 GetPosition() { return transform.position; }
     public float GetDistance(Vector3 _target) { return Vector3.Distance(transform.position, _target); }
 
+    public bool playerInSight { get; set; }
+    public Vector3 lastPlayerSighting;
+    public Vector3 playerPosition;
+    public float alertTimer = 10f;
+
+    public float investigateTimer = 15f;
+
+    GlobalBlackboard globalBlackboard;
+
     private void OnValidate()
     {
+        globalBlackboard = FindObjectOfType<GlobalBlackboard>();
         patrolLocations = GameObject.FindGameObjectsWithTag(gameObject.name + " Waypoints");
         triedToConverse = false;
     }
@@ -34,9 +45,9 @@ public class Guardblackboard : MonoBehaviour
     {
         if(GetGuardState() == GuardState.converse)
         {
-            converseTimer -= Time.deltaTime;
+            conversationTimer -= Time.deltaTime;
 
-            if (converseTimer <= 0)
+            if (conversationTimer <= 0)
             {
                 finishedConversation = true;
             }
@@ -46,6 +57,32 @@ public class Guardblackboard : MonoBehaviour
         {
             ConversationTime();
         }
+
+        if(GetGuardState() == GuardState.alerted)
+        {
+            alertTimer -= Time.deltaTime;
+
+            if(alertTimer <= 0)
+            {
+                SetState(GuardState.investigate);
+                Debug.Log("Guards are returning to an alerted patrol");
+                alertTimer = 10f;
+            }
+        }
+
+        if(GetGuardState() == GuardState.investigate)
+        {
+            investigateTimer -= Time.deltaTime;
+
+            if (investigateTimer <= 0)
+            {
+                SetState(GuardState.idle);
+                Debug.Log("Guards are returning to their idle patrol");
+                investigateTimer = 10f;
+            }
+        }
+
+        lastPlayerSighting = globalBlackboard.playerLastSighting;
     }
 
     public void SetTriedToConverse(bool conversation)
@@ -54,19 +91,19 @@ public class Guardblackboard : MonoBehaviour
 
         if (triedToConverse == true)
         {
-            converseTimer = CONVERSATION_RETRY_TIMER;
+            converseRetryTimer = CONVERSATION_RETRY_TIMER;
         }
     }
 
     public void ConversationTime()
     {
-        if (converseTimer <= 0)
+        if (converseRetryTimer <= 0)
         {
             triedToConverse = false;
-            converseTimer = CONVERSATION_RETRY_TIMER;
+            converseRetryTimer = CONVERSATION_RETRY_TIMER;
             return;
         }
 
-        converseTimer -= Time.deltaTime;
+        converseRetryTimer -= Time.deltaTime;
     }
 }
