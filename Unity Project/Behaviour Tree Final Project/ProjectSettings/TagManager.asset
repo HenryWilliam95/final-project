@@ -8,6 +8,9 @@ TagManager:
   - Guard Waypoints
   - Guard 2 Waypoints
   - Game Controller
+  - Guard 3 Waypoints
+  - Guard 4 Waypoints
+  - Guard 5 Waypoints
   layers:
   - Default
   - TransparentFX

@@ -537,11 +537,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guard 2
       objectReference: {fileID: 0}
-    - target: {fileID: 8136343703394757045, guid: 277e08e405f82524eadc2831c036dbbe,
-        type: 3}
-      propertyPath: state
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1903683780400900129, guid: 277e08e405f82524eadc2831c036dbbe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -596,16 +591,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2059073712522441583, guid: 277e08e405f82524eadc2831c036dbbe,
-        type: 3}
-      propertyPath: speedTest
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4813009960919136503, guid: 277e08e405f82524eadc2831c036dbbe,
-        type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
@@ -889,7 +874,6 @@ MonoBehaviour:
   - {fileID: 698502825}
   - {fileID: 1831478548}
   CCTVs:
-  - {fileID: 0}
   - {fileID: 7817426741786142038}
 --- !u!4 &2099724881
 Transform:
