@@ -19,14 +19,16 @@ public class CheckState : Node
 
     public override Status Tick()
     {
+        // Check that the guards state.  Used as a condintional to control which behaviours agent uses depending
+        // on the guards current state
         if (guardBlackboard.GetGuardState() == guardState)
         {          
             navAgent.isStopped = false;
             return Status.SUCCESS;
         }
 
+        // If the state is not passed stop the agent
         navAgent.isStopped = true;
-
         return Status.FAILURE;
     }
 }

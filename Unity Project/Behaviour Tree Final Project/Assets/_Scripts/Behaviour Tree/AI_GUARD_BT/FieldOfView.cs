@@ -24,26 +24,17 @@ public class FieldOfView : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    private void Update()
-    {
-        if(globalBlackboard.playerLastSighting != previousSighting)
-        {
-            personalLastSighting = globalBlackboard.playerLastSighting;
-        }
-
-        previousSighting = globalBlackboard.playerLastSighting;
-    }
-
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             playerInSight = false;
 
-            Debug.Log("Hit player");
+            // If the player enters the guards detection zone, direction towards the player and convert to an angle
             Vector3 vectorToPlayer = other.transform.position - transform.position;
             float angle = Vector3.Angle(vectorToPlayer, transform.forward);
 
+            // If the angle is less that half the guards view angle player is within the guards LoS
             if(angle < fieldOFViewAngle * 0.5f)
             {
                 RaycastHit hit;
@@ -52,11 +43,13 @@ public class FieldOfView : MonoBehaviour
                 int layerMask = 1 << 10;
                 layerMask = ~layerMask;
 
+                // Create a raycast to ensure that the player is visible and not hidden behind an object or in other room
                 if(Physics.Raycast(transform.position + Vector3.up, vectorToPlayer.normalized, out hit, detectionZone.radius, layerMask))
                 {
                     Debug.Log("Field of view raycast has hit: " + hit.collider.name);   // Check what has been hit
                     Debug.DrawRay(transform.position + Vector3.up, vectorToPlayer, Color.green);    // Draw a line towards the player
 
+                    // If the player has been seen, update relevant systems
                     if(hit.collider.CompareTag("Player"))
                     {
                         playerInSight = true;
@@ -74,6 +67,7 @@ public class FieldOfView : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        // If the guard loses the player, set them to alerted
         if(other.gameObject == player)
         {
             playerInSight = false;

@@ -6,8 +6,10 @@ public enum Status { SUCCESS, RUNNING, FAILURE, INVALID }
 
 public class Node
 {
+    // Method used to rick the tree
     public virtual Status Tick() { return Status.INVALID; }
 
+    // Methods called at the start and finish of a node to reset values
     public virtual void OnStart() { }
     public virtual void OnTerminate(Status _status) { }
 
@@ -22,6 +24,7 @@ public class Node
     {
         if(status == Status.INVALID) { OnStart(); }
 
+        // Begin ticking the tree
         status = Tick();
 
         if(status != Status.RUNNING) { OnTerminate(status); }

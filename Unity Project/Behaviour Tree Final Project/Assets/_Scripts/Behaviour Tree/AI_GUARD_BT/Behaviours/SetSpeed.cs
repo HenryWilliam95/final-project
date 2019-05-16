@@ -16,6 +16,7 @@ public class SetSpeed : Node
 
     public override Status Tick()
     {
+        // Provided their is a NavMeshAgent present, adjust the speed to fix the current decision branch
         if(navAgent == null) { return Status.FAILURE; }
 
         navAgent.speed = speed;

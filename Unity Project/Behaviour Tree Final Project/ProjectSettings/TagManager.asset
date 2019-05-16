@@ -11,6 +11,7 @@ TagManager:
   - Guard 3 Waypoints
   - Guard 4 Waypoints
   - Guard 5 Waypoints
+  - Guard 1 Waypoints
   layers:
   - Default
   - TransparentFX

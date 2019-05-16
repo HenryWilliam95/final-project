@@ -20,21 +20,25 @@ public class SetSearchZone : Node
 
     public override Status Tick()
     {
-        if (!hasReachedDestination()) { return Status.FAILURE; }
-
-        if(navAgent.velocity.magnitude <= 0.4f)
+        // If the agent hits a wall, to prevent standing still reset their position
+        if (navAgent.velocity.magnitude <= 0.4f)
         {
             Debug.Log("Magnitude is small agent not moving " + navAgent.velocity.magnitude);
             navAgent.SetDestination(RandomPosition(globalBlackboard.playerLastSighting, searchRadius));
             return Status.SUCCESS;
         }
 
+        // If the guard hasn't reached their destination, continue on path
+        if (!hasReachedDestination()) { return Status.FAILURE; }
+
+        // If agent is at destination, set a new point within the wander zone
         navAgent.SetDestination(RandomPosition(globalBlackboard.playerLastSighting, searchRadius));
         return Status.SUCCESS;
     }
 
     bool hasReachedDestination() { return navAgent.remainingDistance <= navAgent.stoppingDistance; }
 
+    // Create a random point within a radius, originating from the player's last known position
     public static Vector3 RandomPosition(Vector3 playerLastSighting, float _searchRadius)
     {
         float radius = _searchRadius;
@@ -45,6 +49,7 @@ public class SetSearchZone : Node
 
         NavMeshHit navHit;
 
+        // Check that the position is valid
         NavMesh.SamplePosition(randomDirection, out navHit, radius, -1);
 
         return navHit.position;

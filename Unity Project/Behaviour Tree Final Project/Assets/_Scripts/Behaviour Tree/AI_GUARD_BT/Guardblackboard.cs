@@ -10,6 +10,31 @@ public class Guardblackboard : MonoBehaviour
     public void SetState(GuardState _guardState) { state = _guardState; }
     public GuardState GetGuardState() { return state; }
 
+    // Method to print states to text box
+    public string GuardStateOutput()
+    {
+        string output = "";
+        switch(state)
+        {
+            case GuardState.idle:
+                output = "idle!";
+                break;
+            case GuardState.alerted:
+                output = "alerted!";
+                break;
+            case GuardState.combat:
+                output = "combat!";
+                break;
+            case GuardState.converse:
+                output = "conversing!";
+                break;
+            case GuardState.investigate:
+                output = "investigating!";
+                break;
+        }
+        return output;
+    }
+
     // Movement
     public Vector3 destination { get; set; }
     public GameObject[] patrolLocations { get; set; }
@@ -22,14 +47,15 @@ public class Guardblackboard : MonoBehaviour
     public bool finishedConversation { get; set; }
     public GameObject nearbyFriendly;
 
+    // Helper functions
     public Vector3 GetPosition() { return transform.position; }
     public float GetDistance(Vector3 _target) { return Vector3.Distance(transform.position, _target); }
 
+    // Player Sightings
     public bool playerInSight { get; set; }
     public Vector3 lastPlayerSighting;
     public Vector3 playerPosition;
     public float alertTimer = 10f;
-
     public float investigateTimer = 15f;
 
     GlobalBlackboard globalBlackboard;
@@ -43,6 +69,7 @@ public class Guardblackboard : MonoBehaviour
 
     private void Update()
     {
+        // If the guard is currently conversing perform a timer until they continue their patrol
         if(GetGuardState() == GuardState.converse)
         {
             conversationTimer -= Time.deltaTime;
@@ -53,11 +80,13 @@ public class Guardblackboard : MonoBehaviour
             }
         }
 
+        // If a guard tried to converse and failed set a timer until they try again
         if(triedToConverse)
         {
             ConversationTime();
         }
 
+        // If the guard is currently alerted and searching for the player start a timer until they drop in alertness level
         if(GetGuardState() == GuardState.alerted)
         {
             alertTimer -= Time.deltaTime;
@@ -70,6 +99,7 @@ public class Guardblackboard : MonoBehaviour
             }
         }
 
+        // If the guards are investigating their patrol root, start a timer until they drop back to idle
         if(GetGuardState() == GuardState.investigate)
         {
             investigateTimer -= Time.deltaTime;

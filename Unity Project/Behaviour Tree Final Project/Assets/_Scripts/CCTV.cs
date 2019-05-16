@@ -9,7 +9,6 @@ public class CCTV : MonoBehaviour
 
     public bool playerInSight;
     public bool playerRecentlySpotted;
-
     public float timeSincePlayerLeft = 0;
 
     // Start is called before the first frame update
@@ -21,6 +20,7 @@ public class CCTV : MonoBehaviour
 
     private void Update()
     {
+        // If the player has been spotted recently perform a countdown to "stop" camera seeing player.
         if(playerRecentlySpotted)
         {
             timeSincePlayerLeft += Time.deltaTime;
@@ -38,8 +38,9 @@ public class CCTV : MonoBehaviour
         if(other.gameObject == player)
         {
             playerInSight = false;
-            Vector3 relativePlayerPosition = player.transform.position - transform.position;
 
+            // Find the player's position and create a raycast to make sure camera can see player and they're not behind a wall
+            Vector3 relativePlayerPosition = player.transform.position - transform.position;
             RaycastHit hit;
 
             if(Physics.Raycast(transform.position, relativePlayerPosition, out hit))

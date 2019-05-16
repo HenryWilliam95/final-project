@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GlobalBlackboard : MonoBehaviour
 {
+    // Keep track of player position, if last sighting is equal to reset, player is hidden
     public Vector3 playerLastSighting = new Vector3(10000,10000,10000);
     public Vector3 resetPlayerSighting = new Vector3(10000, 10000, 10000);
 
+    // Store an array of all the guards and CCTV cameras
     public Guardblackboard[] guardBlackboards;
     public CCTV[] CCTVs;
 
@@ -19,6 +21,7 @@ public class GlobalBlackboard : MonoBehaviour
 
     private void Update()
     {
+        // Loop through all the guards, if one can see the player alert all other guards to the player location
         foreach (Guardblackboard guardblackboard in guardBlackboards)
         {
             if(guardblackboard.playerInSight)
@@ -35,6 +38,7 @@ public class GlobalBlackboard : MonoBehaviour
             }
         }
 
+        // Loop through all the cameras, if one can see the player alert all other guards to the player location
         foreach (CCTV camera in CCTVs)
         {
             if(camera.playerInSight)

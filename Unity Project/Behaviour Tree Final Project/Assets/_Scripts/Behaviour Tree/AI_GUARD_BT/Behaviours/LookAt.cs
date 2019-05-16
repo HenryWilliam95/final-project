@@ -15,11 +15,10 @@ public class LookAt : Node
 
     public override Status Tick()
     {
+        // Set the look at target for the guard to the guard they are conversing with
         target = guardblackboard.nearbyFriendly.transform;
 
         guardblackboard.gameObject.transform.LookAt(target);
-        //guardblackboard.nearbyFriendly.GetComponent<Guardblackboard>().gameObject.transform.LookAt(guardblackboard.transform);
-
         return Status.SUCCESS;
     }
 }
