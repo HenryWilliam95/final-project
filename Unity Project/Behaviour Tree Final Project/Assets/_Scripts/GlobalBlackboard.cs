@@ -55,6 +55,8 @@ public class GlobalBlackboard : MonoBehaviour
                     // If the guard can already see the player, ignore them
                     if (gb.GetGuardState() == Guardblackboard.GuardState.combat) { continue; }
 
+                    guardblackboard.destination = playerLastSighting;
+
                     // Set all guards to the alerted state;
                     gb.SetState(Guardblackboard.GuardState.alerted);
                 }
@@ -71,6 +73,8 @@ public class GlobalBlackboard : MonoBehaviour
                 {
                     // If the guard can already see the player, ignore them
                     if (guardblackboard.GetGuardState() == Guardblackboard.GuardState.combat) { continue; }
+
+                    guardblackboard.destination = playerLastSighting;
 
                     // Set all guards to the alerted state;
                     guardblackboard.SetState(Guardblackboard.GuardState.alerted);

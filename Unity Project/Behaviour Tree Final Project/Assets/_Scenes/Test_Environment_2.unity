@@ -5893,10 +5893,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 698502824, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
 --- !u!4 &541280468 stripped
@@ -7836,10 +7832,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 698502824, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
 --- !u!4 &713788890 stripped
@@ -8019,11 +8011,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -65.362976
       objectReference: {fileID: 0}
-    - target: {fileID: 6261366474187633924, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 598601901092882318, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
         type: 3}
       propertyPath: m_Mesh
@@ -8034,6 +8021,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1382840843}
+    - target: {fileID: 6261366474187633924, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7186069301884319939, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
         type: 3}
       propertyPath: m_Mesh
@@ -9241,10 +9233,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698502824, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
@@ -12099,10 +12087,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 698502824, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
-      propertyPath: m_Constraints
-      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
@@ -15690,10 +15674,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 698502824, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 277e08e405f82524eadc2831c036dbbe, type: 3}
 --- !u!4 &1850890725 stripped
@@ -17500,11 +17480,11 @@ MonoBehaviour:
   - {fileID: 1177437877}
   - {fileID: 1275103020}
   CCTVs:
-  - {fileID: 1232107166}
-  - {fileID: 885499478}
-  - {fileID: 1565740564}
   - {fileID: 647986178}
+  - {fileID: 885499478}
   - {fileID: 906324738}
+  - {fileID: 1232107166}
+  - {fileID: 1565740564}
   - {fileID: 3327883489875048853}
 --- !u!4 &2115652481
 Transform:
@@ -17659,11 +17639,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -65.362976
       objectReference: {fileID: 0}
-    - target: {fileID: 4778900101188359205, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
-        type: 3}
-      propertyPath: m_Range
-      value: 104.1
-      objectReference: {fileID: 0}
     - target: {fileID: 598601901092882318, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
         type: 3}
       propertyPath: m_Mesh
@@ -17684,5 +17659,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1506583554}
+    - target: {fileID: 4778900101188359205, guid: 2a7aef5b5a635ff409968cfcf14ceb5c,
+        type: 3}
+      propertyPath: m_Range
+      value: 104.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a7aef5b5a635ff409968cfcf14ceb5c, type: 3}
