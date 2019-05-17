@@ -83,6 +83,14 @@ public class GUARD_BT : MonoBehaviour
             new CombatPickLocation(ref guardBlackboard, ref navAgent, ref globalBlackboard),
             new Move(ref guardBlackboard, ref navAgent));
 
+        SequenceNode shootPlayer = new SequenceNode("Shoot Player",
+            new CheckRange(ref guardBlackboard, 3f),
+            new ShootPlayer(ref globalBlackboard));
+
+        SelectorNode shootOrMove = new SelectorNode("Shoot or Move",
+            shootPlayer,
+            combatMovement);
+
         // If the player has been sighted by another guard or by the CCTV move to the spoted location and perform a "wander"
         // type steering behaviour
         SequenceNode playerSighted = new SequenceNode("Player Sighted",
@@ -94,7 +102,7 @@ public class GUARD_BT : MonoBehaviour
         SequenceNode playerInSight = new SequenceNode("Player In Sight",
             new CheckState(ref guardBlackboard, Guardblackboard.GuardState.combat, ref navAgent),
             new SetSpeed(COMBAT_SPEED, ref navAgent),
-            combatMovement);
+            shootOrMove);
 
         SelectorNode combat = new SelectorNode("Combat Selector",
             playerInSight,

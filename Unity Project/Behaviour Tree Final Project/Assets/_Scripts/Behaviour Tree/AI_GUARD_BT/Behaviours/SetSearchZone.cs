@@ -23,7 +23,6 @@ public class SetSearchZone : Node
         // If the agent hits a wall, to prevent standing still reset their position
         if (navAgent.velocity.magnitude <= 0.4f)
         {
-            Debug.Log("Magnitude is small agent not moving " + navAgent.velocity.magnitude);
             navAgent.SetDestination(RandomPosition(globalBlackboard.playerLastSighting, searchRadius));
             return Status.SUCCESS;
         }

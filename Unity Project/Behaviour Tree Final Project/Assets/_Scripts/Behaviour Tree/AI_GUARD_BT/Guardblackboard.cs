@@ -38,6 +38,7 @@ public class Guardblackboard : MonoBehaviour
     // Movement
     public Vector3 destination { get; set; }
     public GameObject[] patrolLocations { get; set; }
+    public GameObject player;
 
     // Conversations 
     const float CONVERSATION_RETRY_TIMER = 10f;
@@ -62,6 +63,7 @@ public class Guardblackboard : MonoBehaviour
 
     private void OnValidate()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         globalBlackboard = FindObjectOfType<GlobalBlackboard>();
         patrolLocations = GameObject.FindGameObjectsWithTag(gameObject.name + " Waypoints");
         triedToConverse = false;

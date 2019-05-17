@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4778900103163398909}
   - component: {fileID: 4778900103163398910}
   - component: {fileID: 4778900103163398786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CCTV Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,6 +141,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spot Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623825335877732504, guid: 07e2ff42d7268ad48bb4610a3dd7cb3e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2623825335877732504, guid: 07e2ff42d7268ad48bb4610a3dd7cb3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2623825335877732505, guid: 07e2ff42d7268ad48bb4610a3dd7cb3e,
         type: 3}
@@ -282,6 +292,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frustum
       objectReference: {fileID: 0}
+    - target: {fileID: 7989272302637137253, guid: 5c1ea0cecef6ee842841ab9a4bc8b213,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 189869032215089365, guid: 5c1ea0cecef6ee842841ab9a4bc8b213,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 189869032215089367, guid: 5c1ea0cecef6ee842841ab9a4bc8b213,
         type: 3}
       propertyPath: m_Range
@@ -306,6 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Frustum v2
+      objectReference: {fileID: 0}
+    - target: {fileID: 513634153303667220, guid: 7df956c87aa9fd54281ba0bfeb4d1b75,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 841527185901050230, guid: 7df956c87aa9fd54281ba0bfeb4d1b75,
         type: 3}

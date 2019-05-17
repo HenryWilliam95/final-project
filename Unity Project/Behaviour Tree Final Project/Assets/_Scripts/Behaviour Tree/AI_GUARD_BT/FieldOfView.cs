@@ -46,7 +46,6 @@ public class FieldOfView : MonoBehaviour
                 // Create a raycast to ensure that the player is visible and not hidden behind an object or in other room
                 if(Physics.Raycast(transform.position + Vector3.up, vectorToPlayer.normalized, out hit, detectionZone.radius, layerMask))
                 {
-                    Debug.Log("Field of view raycast has hit: " + hit.collider.name);   // Check what has been hit
                     Debug.DrawRay(transform.position + Vector3.up, vectorToPlayer, Color.green);    // Draw a line towards the player
 
                     // If the player has been seen, update relevant systems
